@@ -2,6 +2,7 @@
 package com.training.turkcell.dp.creation.builder2;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.training.turkcell.dp.creation.builder2.Customer.Phone.PhoneBuilder;
@@ -68,13 +69,19 @@ public class Customer {
             return this.number;
         }
 
-        public static PhoneBuilder getBuilder() {
-            return new PhoneBuilder();
+        public static PhoneBuilder getBuilder(final CustomerBuilder customerParam) {
+            return new PhoneBuilder(customerParam);
         }
 
         public static class PhoneBuilder {
 
-            private final Phone phone = new Phone();
+            private final Phone           phone = new Phone();
+            private final CustomerBuilder customer;
+
+            public PhoneBuilder(final CustomerBuilder customerParam) {
+                super();
+                this.customer = customerParam;
+            }
 
             public String getName() {
                 return this.phone.name;
@@ -94,10 +101,14 @@ public class Customer {
                 return this;
             }
 
+            public CustomerBuilder add() {
+                this.customer.addPhone(this.phone);
+                return this.customer;
+            }
         }
     }
 
-    public class Address {
+    public static class Address {
 
         private String address;
         private String city;
@@ -109,15 +120,16 @@ public class Customer {
         public String getCity() {
             return this.city;
         }
+
     }
 
     public static class CustomerBuilder {
 
-        private String      name;
-        private String      surname;
-        private LocalDate   birthdate;
-        private List<Phone> phones;
-        private Address     address;
+        private String            name;
+        private String            surname;
+        private LocalDate         birthdate;
+        private final List<Phone> phones = new ArrayList<>();
+        private Address           address;
 
         private CustomerBuilder() {
         }
@@ -155,7 +167,7 @@ public class Customer {
         }
 
         public PhoneBuilder withPhone() {
-            return Phone.getBuilder();
+            return Phone.getBuilder(this);
         }
 
         public Phone withPhoneName(final String name) {
@@ -167,13 +179,29 @@ public class Customer {
             return this.address;
         }
 
-        public CustomerBuilder setAddress(final Address address) {
-            this.address = address;
+        public CustomerBuilder withAddress(final String addr) {
+            if (this.address == null) {
+                this.address = new Address();
+            }
+            this.address.address = addr;
             return this;
 
         }
 
-        public Customer buildType() {
+        public CustomerBuilder withCity(final String city) {
+            if (this.address == null) {
+                this.address = new Address();
+            }
+            this.address.city = city;
+            return this;
+
+        }
+
+        private void addPhone(final Phone phoneParam) {
+
+        }
+
+        public Customer build() {
             Customer customer = new Customer(this.name,
                                              this.surname,
                                              this.birthdate,
@@ -184,6 +212,7 @@ public class Customer {
 
 
     }
+
 
 }
 
