@@ -197,8 +197,8 @@ public class Customer {
 
         }
 
-        private void addPhone(final Phone phoneParam) {
-
+        public void addPhone(final Phone phoneParam) {
+            this.phones.add(phoneParam);
         }
 
         public Customer build() {

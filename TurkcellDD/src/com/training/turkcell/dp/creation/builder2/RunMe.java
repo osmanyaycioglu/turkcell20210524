@@ -1,6 +1,5 @@
 package com.training.turkcell.dp.creation.builder2;
 
-
 public class RunMe {
 
     public static void main(final String[] args) {
