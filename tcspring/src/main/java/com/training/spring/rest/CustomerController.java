@@ -1,5 +1,7 @@
 package com.training.spring.rest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -15,8 +17,10 @@ import com.training.spring.middle.CustomerService;
 @RequestMapping("/api/v1/customer/provision")
 public class CustomerController {
 
+    private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
+
     @Autowired
-    private CustomerService cs;
+    private CustomerService     cs;
 
     @PostMapping("/add")
     public ResponseEntity<String> add(@Validated @RequestBody final Customer customer) {
@@ -32,6 +36,17 @@ public class CustomerController {
         //            // TODO Auto-generated catch block
         //            e.printStackTrace();
         //        }
+
+        CustomerController.logger.debug("Deneme " + customer);
+
+        CustomerController.logger.debug("Deneme {1} {2} ",
+                                        customer,
+                                        customer);
+
+        if (CustomerController.logger.isDebugEnabled()) {
+            CustomerController.logger.debug("[CustomerController][add]-> " + customer);
+        }
+
         this.cs.add(null);
         return ResponseEntity.ok("Ok");
     }
