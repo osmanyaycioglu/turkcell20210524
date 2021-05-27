@@ -2,6 +2,10 @@ package com.training.turkcell.basic.inheritance;
 
 public class MercedesE extends Mercedes {
 
+    public MercedesE() {
+        super("E");
+    }
+
     @Override
     public void forward() {
         if (true) {

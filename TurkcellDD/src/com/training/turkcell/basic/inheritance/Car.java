@@ -10,10 +10,13 @@ public class Car {
     int                     topSpeed;
     int                     doorcount;
     int                     trunkType;
+    String                  model;
 
 
-    public Car(final int trunkTypeParam) {
+    public Car(final int trunkTypeParam,
+               final String modelParam) {
         this.trunkType = trunkTypeParam;
+        this.model = modelParam;
     }
 
     public void openTrunk() {

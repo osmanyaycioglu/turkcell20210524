@@ -1,9 +1,9 @@
 package com.training.turkcell.basic.inheritance;
 
 
-public class BMW520 extends BMW {
+public class BMW320 extends BMW {
 
-    public BMW520() {
+    public BMW320() {
         super("320");
         System.out.println("test");
     }
