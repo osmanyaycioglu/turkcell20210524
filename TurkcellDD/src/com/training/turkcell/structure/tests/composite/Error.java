@@ -11,6 +11,7 @@ public class Error {
     private String      errorDesc;
     private int         errorCause;
 
+
     public Error addSubError(final Error subErrorParam) {
         if (this.subErrors == null) {
             this.subErrors = new ArrayList<>();

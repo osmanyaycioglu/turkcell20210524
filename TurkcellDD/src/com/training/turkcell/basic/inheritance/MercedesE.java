@@ -1,17 +1,16 @@
 package com.training.turkcell.basic.inheritance;
 
+import com.training.turkcell.basic.inheritance.trans.ETransType;
+import com.training.turkcell.basic.inheritance.yakit.EYakitTipi;
+
 public class MercedesE extends Mercedes {
 
-    public MercedesE() {
-        super("E");
+    public MercedesE(final ETransType eTransTipiParam,
+                     final EYakitTipi eYakitTipiParam) {
+        super("E",
+              eTransTipiParam,
+              eYakitTipiParam);
     }
 
-    @Override
-    public void forward() {
-        if (true) {
-            System.out.println("as");
-        }
-        System.out.println("asm");
-        System.out.println("top speed BMW520 : " + this.topSpeed + " forward");
-    }
+
 }
