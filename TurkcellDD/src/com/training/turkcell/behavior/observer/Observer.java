@@ -33,5 +33,8 @@ public class Observer implements IListener {
         }
     }
 
+    public void register(final IListener listener) {
+        this.listeners.add(listener);
+    }
 
 }
